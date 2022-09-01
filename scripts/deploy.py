@@ -8,7 +8,7 @@ KEPT_BALANCE = Web3.toWei(100, "ether")
 
 def deploy_vistula_token():
     account = get_account()
-    vistula_token = VLAToken.deploy(10000000000, {"from": account})
+    vistula_token = VLAToken.deploy(1000000000000000000000000, {"from": account})
     return vistula_token
 
 
