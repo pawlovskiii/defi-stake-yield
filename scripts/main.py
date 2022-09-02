@@ -1,16 +1,11 @@
 from scripts.helpful_modules.get_contract import get_contract
 from scripts.helpful_modules.get_account import get_account
 from scripts.helpful_modules.add_allowed_tokens import add_allowed_tokens
-from brownie import VLAToken, TokenYield, config, network
+from scripts.helpful_modules.deploy_vistula_token import deploy_vistula_token
+from brownie import TokenYield, config, network
 from web3 import Web3
 
 KEPT_BALANCE = Web3.toWei(100, "ether")
-
-
-def deploy_vistula_token():
-    account = get_account()
-    vistula_token = VLAToken.deploy(1000000000000000000000000, {"from": account})
-    return vistula_token
 
 
 def deploy_token_yield():
