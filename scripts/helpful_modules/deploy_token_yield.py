@@ -7,6 +7,15 @@ from web3 import Web3
 
 KEPT_BALANCE = Web3.toWei(100, "ether")
 
+weth_token = get_contract("fau_token")
+fau_token = get_contract("weth_token")
+
+dict_of_allowed_tokens = {
+    deploy_vistula_token_contract(): get_contract("dai_usd_price_feed"),
+    fau_token: get_contract("dai_usd_price_feed"),
+    weth_token: get_contract("eth_usd_price_feed"),
+}
+
 
 def deploy_token_yield_contract():
     account = get_account()
@@ -19,14 +28,6 @@ def deploy_token_yield_contract():
         token_yield.address, deploy_vistula_token_contract().totalSupply() - KEPT_BALANCE, {"from": account}
     )
     tx.wait(1)
-
-    weth_token = get_contract("fau_token")
-    fau_token = get_contract("weth_token")
-    dict_of_allowed_tokens = {
-        deploy_vistula_token_contract(): get_contract("dai_usd_price_feed"),
-        fau_token: get_contract("dai_usd_price_feed"),
-        weth_token: get_contract("eth_usd_price_feed"),
-    }
 
     add_allowed_tokens(token_yield, dict_of_allowed_tokens, account)
     return token_yield
