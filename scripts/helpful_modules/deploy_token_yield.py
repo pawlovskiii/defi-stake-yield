@@ -7,8 +7,8 @@ from web3 import Web3
 
 KEPT_BALANCE = Web3.toWei(100, "ether")
 
-weth_token = get_contract("fau_token")
-fau_token = get_contract("weth_token")
+weth_token = get_contract("weth_token")
+fau_token = get_contract("fau_token")
 
 dict_of_allowed_tokens = {
     deploy_vistula_token_contract(): get_contract("dai_usd_price_feed"),
