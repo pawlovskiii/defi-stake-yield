@@ -6,7 +6,7 @@ from brownie import (
     MockDAI,
     Contract,
 )
-from scripts.deploy_mocks import deploy_mocks
+from scripts.helpful_modules.deploy_mocks import deploy_mocks
 
 NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["hardhat", "development", "ganache"]
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [

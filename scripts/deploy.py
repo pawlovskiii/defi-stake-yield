@@ -1,5 +1,5 @@
-from scripts.get_contract import get_contract
-from scripts.get_account import get_account
+from scripts.helpful_modules.get_contract import get_contract
+from scripts.helpful_modules.get_account import get_account
 from brownie import VLAToken, TokenYield, config, network
 from web3 import Web3
 

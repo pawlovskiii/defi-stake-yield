@@ -1,5 +1,5 @@
 from brownie import network, LinkToken, MockV3Aggregator, MockDAI, MockWETH
-from scripts.get_account import get_account
+from scripts.helpful_modules.get_account import get_account
 
 INITIAL_PRICE_FEED_VALUE = 2000000000000000000000
 DECIMALS = 18
