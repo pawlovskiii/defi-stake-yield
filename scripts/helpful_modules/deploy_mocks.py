@@ -5,7 +5,7 @@ INITIAL_PRICE_FEED_VALUE = 2000000000000000000000
 DECIMALS = 18
 
 
-def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_PRICE_FEED_VALUE):
+def deploy_mocks(decimals=DECIMALS, initial_value=INITIAL_PRICE_FEED_VALUE) -> None:
 
     print(f"The active network is {network.show_active()}")
     print("Deploying Mocks...")
