@@ -1,14 +1,14 @@
 import pytest
-from brownie import network, exceptions
-from scripts.helpful_modules.get_account import get_account, LOCAL_BLOCKCHAIN_ENVIRONMENTS
+from brownie import exceptions
+from scripts.helpful_modules.network_check import isNetworkLocal
+from scripts.helpful_modules.get_account import get_account
 from scripts.helpful_modules.get_contract import get_contract
 from scripts.helpful_modules.deploy_token_yield_and_vistula_token import deploy_token_yield_and_vistula_token_contracts
 
 
 def test_set_price_feed_contract():
     # Arrange
-    if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-        pytest.skip("Only for local testing!")
+    isNetworkLocal()
     non_owner = get_account(index=1)
     yield_token, vistula_token = deploy_token_yield_and_vistula_token_contracts()
     # Act
@@ -21,8 +21,7 @@ def test_set_price_feed_contract():
 
 def test_stake_tokens(amount_staked):
     # Arrange
-    if network.show_active() not in LOCAL_BLOCKCHAIN_ENVIRONMENTS:
-        pytest.skip("Only for local testing!")
+    isNetworkLocal()
     account = get_account()
     yield_token, vistula_token = deploy_token_yield_and_vistula_token_contracts()
     # Act
