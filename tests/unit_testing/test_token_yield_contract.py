@@ -4,7 +4,10 @@ from scripts.helpful_modules.network_check import isNetworkLocal
 from scripts.helpful_modules.get_account import get_account
 from scripts.helpful_modules.get_contract import get_contract
 from scripts.helpful_modules.deploy_mocks import INITIAL_PRICE_FEED_VALUE, DECIMALS
-from scripts.helpful_modules.deploy_token_yield_and_vistula_token import deploy_token_yield_and_vistula_token_contracts
+from scripts.helpful_modules.deploy_token_yield_and_vistula_token import (
+    KEPT_BALANCE,
+    deploy_token_yield_and_vistula_token_contracts,
+)
 
 
 def test_set_price_feed_contract():
@@ -72,3 +75,15 @@ def test_get_token_value():
         INITIAL_PRICE_FEED_VALUE,
         DECIMALS,
     )
+
+
+def test_unstake_tokens(amount_staked):
+    # Arrange
+    isNetworkLocal()
+    account = get_account()
+    yield_token, vistula_token = test_stake_tokens(amount_staked)
+    # Act
+    yield_token.unstakeTokens(vistula_token.address, {"from": account})
+    assert vistula_token.balanceOf(account.address) == KEPT_BALANCE
+    assert yield_token.stakingBalance(vistula_token.address, account.address) == 0
+    assert yield_token.uniqueTokensStaked(account.address) == 0
