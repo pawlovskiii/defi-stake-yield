@@ -87,3 +87,17 @@ def test_unstake_tokens(amount_staked):
     assert vistula_token.balanceOf(account.address) == KEPT_BALANCE
     assert yield_token.stakingBalance(vistula_token.address, account.address) == 0
     assert yield_token.uniqueTokensStaked(account.address) == 0
+
+
+def test_add_allowed_tokens():
+    # Arrange
+    isNetworkLocal()
+    account = get_account()
+    non_owner = get_account(index=1)
+    yield_token, vistula_token = deploy_token_yield_and_vistula_token_contracts()
+    # Act
+    yield_token.addAllowedTokens(vistula_token.address, {"from": account})
+    # Assert
+    assert yield_token.allowedTokens(0) == vistula_token.address
+    with pytest.raises(exceptions.VirtualMachineError):
+        yield_token.addAllowedTokens(vistula_token.address, {"from": non_owner})
