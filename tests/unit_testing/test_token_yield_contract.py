@@ -3,7 +3,7 @@ from brownie import exceptions
 from scripts.helpful_modules.network_check import isNetworkLocal
 from scripts.helpful_modules.get_account import get_account
 from scripts.helpful_modules.get_contract import get_contract
-from scripts.helpful_modules.deploy_mocks import INITIAL_PRICE_FEED_VALUE
+from scripts.helpful_modules.deploy_mocks import INITIAL_PRICE_FEED_VALUE, DECIMALS
 from scripts.helpful_modules.deploy_token_yield_and_vistula_token import deploy_token_yield_and_vistula_token_contracts
 
 
@@ -61,3 +61,14 @@ def test_get_user_total_value_with_different_tokens(amount_staked, random_erc20)
     # Assert
     total_value = yield_token.getUserTotalValue(account.address)
     assert total_value == INITIAL_PRICE_FEED_VALUE * 3
+
+
+def test_get_token_value():
+    # Arrange
+    isNetworkLocal()
+    yield_token, vistula_token = deploy_token_yield_and_vistula_token_contracts()
+    # Act / Assert
+    assert yield_token.getTokenValue(vistula_token.address) == (
+        INITIAL_PRICE_FEED_VALUE,
+        DECIMALS,
+    )
