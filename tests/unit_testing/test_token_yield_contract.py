@@ -42,6 +42,22 @@ def test_issue_tokens(amount_staked):
     yield_token, vistula_token = test_stake_tokens(amount_staked)
     starting_balance = vistula_token.balanceOf(account.address)
     # Act
-    yield_token.issueTokens({"from": account}) 
+    yield_token.issueTokens({"from": account})
     # Arrange
-    assert(vistula_token.balanceOf(account.address) == starting_balance + INITIAL_PRICE_FEED_VALUE)
+    assert vistula_token.balanceOf(account.address) == starting_balance + INITIAL_PRICE_FEED_VALUE
+
+
+def test_get_user_total_value_with_different_tokens(amount_staked, random_erc20):
+    # Arrange
+    isNetworkLocal()
+    account = get_account()
+    yield_token, vistula_token = test_stake_tokens(amount_staked)
+    # Act
+    yield_token.addAllowedTokens(random_erc20.address, {"from": account})
+    yield_token.setPriceFeedContract(random_erc20.address, get_contract("eth_usd_price_feed"), {"from": account})
+    random_erc20_stake_amount = amount_staked * 2
+    random_erc20.approve(yield_token.address, random_erc20_stake_amount, {"from": account})
+    yield_token.stakeTokens(random_erc20_stake_amount, random_erc20.address, {"from": account})
+    # Assert
+    total_value = yield_token.getUserTotalValue(account.address)
+    assert total_value == INITIAL_PRICE_FEED_VALUE * 3
