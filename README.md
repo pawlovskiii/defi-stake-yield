@@ -5,7 +5,7 @@
 - [General info](#general-info)
 - [Setup](#setup)
   - [Installing dependencies](#installing-dependencies)
-  - [Run the project](#run-the-project)
+  - [Recommended commands to use for the project](#recommended-commands-to-use-for-the-project)
 
 ## General info
 
