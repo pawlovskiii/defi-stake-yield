@@ -9,6 +9,8 @@
 
 ## General info
 
+Application is about reward system protocol within staking certain tokens. It uses ERC20 standards from OpenZeppelin, Oracles from ChainLink, and all different kinds of Mocks. It's well tested, especially within unit and integration tests.
+
 ## Setup
 
 These are the crucial steps to configuring and running the project.
