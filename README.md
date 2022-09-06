@@ -52,16 +52,16 @@ $ npm run compile
 #### Deploying contracts via Ganache Local Chain
 
 ```bash
-# most used command, because takes the lowest amount of time to execute all the transactions
+# Most used command, because takes the lowest amount of time to execute all the transactions
 $ npm run-script run
 ```
 
 #### Brownie testing variations commands
 
 ```bash
-# tests all the functions
+# Tests all the functions
 $ npm test
 
-# tests single function
+# Tests single function
 $ brownie test -k test_set_price_feed_contract
 ```
