@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "run": "brownie run scripts/main.py ",
+    "run": "brownie run scripts/main.py",
     "test": "brownie test"
   },
   "repository": {
