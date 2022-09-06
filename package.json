@@ -1,0 +1,24 @@
+{
+  "name": "stake-yield-defi-protocol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "run": "brownie run scripts/main.py ",
+    "test": "brownie test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawlovskiii/defi-stake-yield.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pawlovskiii/defi-stake-yield/issues"
+  },
+  "homepage": "https://github.com/pawlovskiii/defi-stake-yield#readme"
+}
