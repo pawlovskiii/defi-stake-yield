@@ -39,7 +39,7 @@ $ pip install -r requirements.txt
 
 ### Recommended commands to use for the project
 
-- Every command with **npm** at the beginning has it's a more detailed path script in the script section within package.json file.
+- Every command with **npm** at the beginning has it's a more detailed path script in the script section within **package.json** file.
 
 The crucial step in order to do any action with the contracts.
 
