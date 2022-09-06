@@ -35,6 +35,8 @@ To download all the necessarily Python packages needed for the project
 
 ```bash
 $ pip install -r requirements.txt
+
+$ pip install eth-brownie
 ```
 
 ### Recommended commands to use for the project
