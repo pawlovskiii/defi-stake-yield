@@ -39,25 +39,27 @@ $ pip install -r requirements.txt
 
 ### Recommended commands to use for the project
 
+- Every command with **npm** at the beginning has it's a more detailed path script in the script section within package.json file.
+
 The crucial step in order to do any action with the contracts.
 
 ```bash
-$ brownie compile
+$ npm run compile
 ```
 
 #### Deploying contracts via Ganache Local Chain
 
 ```bash
-# without specific flags, it defaults to ganache-cli
-$ brownie run .\scripts\main.py
+# most used command, because takes the lowest amount of time to execute all the transactions
+$ npm run-script run
 ```
 
-#### Brownie testing variations command
+#### Brownie testing variations commands
 
 ```bash
-# testing all the functions
-$ brownie test
+# tests all the functions
+$ npm test
 
-# single function testing
+# tests single function
 $ brownie test -k test_set_price_feed_contract
 ```
