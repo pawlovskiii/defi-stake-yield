@@ -26,9 +26,6 @@ $ git clone https://github.com/pawlovskiii/stake-yield-defi-protocol
 # Go into the repository
 $ cd stake-yield-defi-protocol
 
-# Install ganache-cli
-$ npm install -g ganache-cli
-
 # Install dependencies (not required)
 $ npm install
 ```
