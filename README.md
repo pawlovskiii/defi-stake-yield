@@ -55,10 +55,15 @@ $ npm run compile
 $ npm run ganache
 ```
 
-#### Deploying contracts via Rinkeby TestNet
+#### Deploying contracts via various TestNets
+
+Users can decide which TestNet they prefer. I only want to inform you that Rinkeby will be deprecated soon, but it's way easier to get test ether in it within various faucets than from the Goerli.
 
 ```bash
-# Second most used command, because it takes several more time to execute
+# Preferably way, because Goerle will be maintained
+$ npm run goerli
+
+# Only if you got trouble with getting test ether within Goerli
 $ npm run rinkeby
 ```
 
