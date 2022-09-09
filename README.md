@@ -52,7 +52,14 @@ $ npm run compile
 
 ```bash
 # Most used command, because takes the lowest amount of time to execute all the transactions
-$ npm run-script run
+$ npm run ganache
+```
+
+#### Deploying contracts via Rinkeby TestNet
+
+```bash
+# Second most used command, because it takes several more time to execute
+$ npm run rinkeby
 ```
 
 #### Brownie testing variations commands
