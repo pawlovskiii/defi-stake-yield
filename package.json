@@ -9,6 +9,7 @@
 	"scripts": {
 		"compile": "brownie compile",
 		"ganache": "brownie run scripts/main.py",
+		"goerli": "brownie run scripts/main.py --network goerli",
 		"rinkeby": "brownie run scripts/main.py --network rinkeby",
 		"test": "brownie test"
 	},
