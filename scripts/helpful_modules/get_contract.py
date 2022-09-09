@@ -2,20 +2,10 @@ from brownie import (
     network,
     config,
     Contract,
-    MockV3Aggregator,
-    MockWETH,
-    MockDAI,
 )
 from scripts.helpful_modules.deploy_mocks import deploy_mocks
+from scripts.helpful_modules.dict_of_mocks import contract_to_mock
 from scripts.helpful_modules.get_account import NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS
-
-
-contract_to_mock = {
-    "eth_usd_price_feed": MockV3Aggregator,
-    "dai_usd_price_feed": MockV3Aggregator,
-    "fau_token": MockDAI,
-    "weth_token": MockWETH,
-}
 
 
 def get_contract(contract_name):
