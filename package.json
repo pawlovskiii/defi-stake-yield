@@ -8,7 +8,8 @@
 	},
 	"scripts": {
 		"compile": "brownie compile",
-		"run": "brownie run scripts/main.py",
+		"ganache": "brownie run scripts/main.py",
+		"rinkeby": "brownie run scripts/main.py --network rinkeby",
 		"test": "brownie test"
 	},
 	"repository": {
