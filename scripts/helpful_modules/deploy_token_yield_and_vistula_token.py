@@ -10,6 +10,7 @@ INITIAL_SUPPLY = 1000000000000000000000000
 
 def deploy_token_yield_and_vistula_token_contracts():
     account = get_account()
+
     vistula_token = VLAToken.deploy(
         INITIAL_SUPPLY, {"from": account}, publish_source=config["networks"][network.show_active()]["verify"]
     )
@@ -18,6 +19,7 @@ def deploy_token_yield_and_vistula_token_contracts():
         {"from": account},
         publish_source=config["networks"][network.show_active()]["verify"],
     )
+
     tx = vistula_token.transfer(token_yield.address, vistula_token.totalSupply() - KEPT_BALANCE, {"from": account})
     tx.wait(1)
 

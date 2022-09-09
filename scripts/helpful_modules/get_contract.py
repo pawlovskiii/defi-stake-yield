@@ -7,11 +7,8 @@ from brownie import (
     MockDAI,
 )
 from scripts.helpful_modules.deploy_mocks import deploy_mocks
+from scripts.helpful_modules.get_account import NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS
 
-NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["development", "ganache"]
-LOCAL_BLOCKCHAIN_ENVIRONMENTS = NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS + [
-    "mainnet-fork",
-]
 
 contract_to_mock = {
     "eth_usd_price_feed": MockV3Aggregator,
@@ -22,7 +19,9 @@ contract_to_mock = {
 
 
 def get_contract(contract_name):
+
     contract_type = contract_to_mock[contract_name]
+
     if network.show_active() in NON_FORKED_LOCAL_BLOCKCHAIN_ENVIRONMENTS:
         if len(contract_type) <= 0:
             deploy_mocks()
@@ -33,4 +32,5 @@ def get_contract(contract_name):
             contract = Contract.from_abi(contract_type._name, contract_address, contract_type.abi)
         except KeyError:
             print(f"{network.show_active()} network is invalid")
+
     return contract
