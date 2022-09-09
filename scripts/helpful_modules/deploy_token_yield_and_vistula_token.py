@@ -9,15 +9,15 @@ KEPT_BALANCE = Web3.toWei(100, "ether")
 
 def deploy_token_yield_and_vistula_token_contracts():
     account = get_account()
-    vistula_token = VLAToken.deploy(1000000000000000000000000, {"from": account})
+    vistula_token = VLAToken.deploy(
+        1000000000000000000000000, {"from": account}, publish_source=config["networks"][network.show_active()]["verify"]
+    )
     token_yield = TokenYield.deploy(
         vistula_token.address,
         {"from": account},
         publish_source=config["networks"][network.show_active()]["verify"],
     )
-    tx = vistula_token.transfer(
-        token_yield.address, vistula_token.totalSupply() - KEPT_BALANCE, {"from": account}
-    )
+    tx = vistula_token.transfer(token_yield.address, vistula_token.totalSupply() - KEPT_BALANCE, {"from": account})
     tx.wait(1)
 
     weth_token = get_contract("weth_token")
