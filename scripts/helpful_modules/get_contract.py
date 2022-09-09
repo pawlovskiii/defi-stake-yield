@@ -1,5 +1,7 @@
 from brownie import (
     network,
+    config,
+    Contract,
     MockV3Aggregator,
     MockWETH,
     MockDAI,
@@ -25,4 +27,10 @@ def get_contract(contract_name):
         if len(contract_type) <= 0:
             deploy_mocks()
         contract = contract_type[-1]
+    else:
+        try:
+            contract_address = config["networks"][network.show_active()][contract_name]
+            contract = Contract.from_abi(contract_type._name, contract_address, contract_type.abi)
+        except KeyError:
+            print(f"{network.show_active()} network is invalid")
     return contract
