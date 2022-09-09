@@ -8,26 +8,26 @@ from scripts.helpful_modules.deploy_token_yield_and_vistula_token import (
 )
 
 
-def test_stake_tokens(amount_staked):
+def test_stake_tokens(staked_amount):
     # Arrange
     isNetworkLocal()
     account = get_account()
     yield_token, vistula_token = deploy_token_yield_and_vistula_token_contracts()
     # Act
-    vistula_token.approve(yield_token.address, amount_staked, {"from": account})
-    yield_token.stakeTokens(amount_staked, vistula_token.address, {"from": account})
+    vistula_token.approve(yield_token.address, staked_amount, {"from": account})
+    yield_token.stakeTokens(staked_amount, vistula_token.address, {"from": account})
     # Assert
-    assert yield_token.stakingBalance(vistula_token.address, account.address) == amount_staked
+    assert yield_token.stakingBalance(vistula_token.address, account.address) == staked_amount
     assert yield_token.uniqueTokensStaked(account.address) == 1
     assert yield_token.stakers(0) == account.address
     return yield_token, vistula_token
 
 
-def test_issue_tokens(amount_staked):
+def test_issue_tokens(staked_amount):
     # Arrange
     isNetworkLocal()
     account = get_account()
-    yield_token, vistula_token = test_stake_tokens(amount_staked)
+    yield_token, vistula_token = test_stake_tokens(staked_amount)
     starting_balance = vistula_token.balanceOf(account.address)
     # Act
     yield_token.issueTokens({"from": account})
@@ -35,15 +35,15 @@ def test_issue_tokens(amount_staked):
     assert vistula_token.balanceOf(account.address) == starting_balance + INITIAL_PRICE_FEED_VALUE
 
 
-def test_get_user_total_value_with_different_tokens(amount_staked, random_erc20):
+def test_get_user_total_value_with_different_tokens(staked_amount, random_erc20):
     # Arrange
     isNetworkLocal()
     account = get_account()
-    yield_token, vistula_token = test_stake_tokens(amount_staked)
+    yield_token, vistula_token = test_stake_tokens(staked_amount)
     # Act
     yield_token.addAllowedTokens(random_erc20.address, {"from": account})
     yield_token.setPriceFeedContract(random_erc20.address, get_contract("eth_usd_price_feed"), {"from": account})
-    random_erc20_stake_amount = amount_staked * 2
+    random_erc20_stake_amount = staked_amount * 2
     random_erc20.approve(yield_token.address, random_erc20_stake_amount, {"from": account})
     yield_token.stakeTokens(random_erc20_stake_amount, random_erc20.address, {"from": account})
     # Assert
@@ -51,11 +51,11 @@ def test_get_user_total_value_with_different_tokens(amount_staked, random_erc20)
     assert total_value == INITIAL_PRICE_FEED_VALUE * 3
 
 
-def test_unstake_tokens(amount_staked):
+def test_unstake_tokens(staked_amount):
     # Arrange
     isNetworkLocal()
     account = get_account()
-    yield_token, vistula_token = test_stake_tokens(amount_staked)
+    yield_token, vistula_token = test_stake_tokens(staked_amount)
     # Act
     yield_token.unstakeTokens(vistula_token.address, {"from": account})
     assert vistula_token.balanceOf(account.address) == KEPT_BALANCE

@@ -5,7 +5,7 @@ from scripts.helpful_modules.get_account import get_account
 
 
 @pytest.fixture
-def amount_staked():
+def staked_amount():
     return Web3.toWei(1, "ether")
 
 
