@@ -5,12 +5,13 @@ from brownie import TokenYield, VLAToken, config, network
 from web3 import Web3
 
 KEPT_BALANCE = Web3.toWei(100, "ether")
+INITIAL_SUPPLY = 1000000000000000000000000
 
 
 def deploy_token_yield_and_vistula_token_contracts():
     account = get_account()
     vistula_token = VLAToken.deploy(
-        1000000000000000000000000, {"from": account}, publish_source=config["networks"][network.show_active()]["verify"]
+        INITIAL_SUPPLY, {"from": account}, publish_source=config["networks"][network.show_active()]["verify"]
     )
     token_yield = TokenYield.deploy(
         vistula_token.address,
