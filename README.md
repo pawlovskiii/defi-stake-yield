@@ -70,9 +70,12 @@ $ npm run rinkeby
 #### Brownie testing variations commands
 
 ```bash
-# Tests all the functions
+# Tests all the functions within every script
 $ npm test
 
-# Tests single function
+# Tests whole single script
+$ brownie test -k test_staked_amount
+
+# Test single function
 $ brownie test -k test_set_price_feed_contract
 ```
