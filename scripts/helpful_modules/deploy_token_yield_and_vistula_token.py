@@ -1,6 +1,7 @@
 from scripts.helpful_modules.get_account import get_account
 from scripts.helpful_modules.add_allowed_tokens import add_allowed_tokens
 from scripts.helpful_modules.dict_of_tokens import dict_of_allowed_tokens
+from scripts.helpful_modules.extract_etherscan_address import extractLinkToEtherscanWebsite
 from brownie import TokenYield, VLAToken, config, network
 from web3 import Web3
 
@@ -14,11 +15,14 @@ def deploy_token_yield_and_vistula_token_contracts():
     vistula_token = VLAToken.deploy(
         INITIAL_SUPPLY, {"from": account}, publish_source=config["networks"][network.show_active()]["verify"]
     )
+    extractLinkToEtherscanWebsite(network.show_active(), vistula_token.address)
+
     token_yield = TokenYield.deploy(
         vistula_token.address,
         {"from": account},
         publish_source=config["networks"][network.show_active()]["verify"],
     )
+    extractLinkToEtherscanWebsite(network.show_active(), vistula_token.address)
 
     tx = vistula_token.transfer(token_yield.address, vistula_token.totalSupply() - KEPT_BALANCE, {"from": account})
     tx.wait(1)
