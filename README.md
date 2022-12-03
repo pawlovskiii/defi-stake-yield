@@ -60,7 +60,7 @@ $ npm run ganache
 Users can decide which TestNet they prefer. I only want to inform you that Rinkeby will be deprecated soon, but it's way easier to get test ether in it within various faucets than from the Goerli.
 
 ```bash
-# Preferably way, because Goerle will be maintained
+# Preferably way, because Goerli will be maintained
 $ npm run goerli
 
 # Only if you got trouble with getting test ether within Goerli
